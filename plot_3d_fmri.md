@@ -1,22 +1,15 @@
 # 3D visualization of fMRI img
 
-### 参考文献
+### Reference
+[Madan, C. R. (2015). Creating 3D visualizations of MRI data: A brief guide. F1000Research, 4, 466.](https://doi.org/10.12688/f1000research.6838.1)
 
-[NCBI - WWW Error Blocked Diagnostic](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
+### Tools used
 
-### 下载工具
-
-1. ITK-SNAP 
+1. [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php)
     
-    [ITK-SNAP Home](http://www.itksnap.org/pmwiki/pmwiki.php)
+2. [ParaView](https://www.paraview.org/download/)
     
-2. ParaView
-    
-    [Download ParaView](https://www.paraview.org/download/)
-    
-3. Sample data: 
-    
-    [NCBI - WWW Error Blocked Diagnostic](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
+3. [Sample data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
     
     ![CleanShot 2023-10-06 at 19.01.15@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_19.01.152x.png)
     
