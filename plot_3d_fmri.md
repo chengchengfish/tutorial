@@ -1,82 +1,64 @@
-# 3D visualization of fMRI img
+# 3D Brain Visualization Workflow
+by chengchengfish, February 1, 2024.
 
-### Reference
-[Madan, C. R. (2015). Creating 3D visualizations of MRI data: A brief guide. F1000Research, 4, 466.](https://doi.org/10.12688/f1000research.6838.1)
+Welcome to this specialized repository, where 2D NIfTI brain imaging files are transformed into captivating 3D visualizations. This toolkit, ideal for neuroscientists, data analysts, and visualization enthusiasts, provides the necessary tools to convert brain scans into high-quality 3D models, ready for thorough analysis and dynamic presentations.
 
-### Tools used
+In navigating the realm of neuroimaging, I've gained invaluable insights into crafting exquisite 3D brain models by leveraging the teachings from Madan's paper and employing this toolkit's capabilities. What follows are the lessons I've learned along the way. For those seeking to delve deeper into these methodologies or to properly acknowledge the foundations of this work, I encourage you to consult Madan's original paper.👇
 
-1. [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php)
-    
-2. [ParaView](https://www.paraview.org/download/)
-    
-3. [Sample data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
-    
-    ![Paper](chengchengfish/tutorial/3d_pics)
-    
+[Madan, C. R. (2015). Creating 3D visualizations of MRI data: A brief guide. F1000Research, 4, 466.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
+&nbsp;
 
-### 操作流程
+## Workflow steps
+### Step 1: Prepare Your Imaging Files
+You can start with your own pre-calculated statmap.nii files or experiment with the provided [Sample data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/).
+![Sample date acquire from](3d_pics/001.png)
 
-1. 准备图像文件（也可以选择用sample data中的文件试用）
-    1. 对自己已计算好的statmap.nii文件进行height threshold和cluster的操作（假定输出文件名：statmapThresh.nii）；
-    2. 对anatomical.nii文件执行同样的height threshold，不需要执行cluster（假定输出文件名：glassbrain.nii）
-2. 用ITK-SNAP将NIfTI文件转换为VTK的格式
-    1. 下载并打开**ITK-SNAP**
-    2. 将两个文件分别各自作为**main image**和**segmentation image**导入ITK-SNAP中：
-        1. 拖动statmapThresh.nii到ITK-SNAP界面（第一次拖入会自动作为main image）
-            
-            ![CleanShot 2023-10-06 at 21.07.33@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.07.332x.png)
-            
-        2. 再次拖动statmapThresh.nii到ITK-SNAP界面，在出现的弹窗中选择”**Load as Segmentation**”
-            
-            ![CleanShot 2023-10-06 at 21.08.22@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.08.222x.png)
-            
-            ![CleanShot 2023-10-06 at 21.16.38@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.16.382x.png)
-            
-    3. 保存文件：点击菜单栏的“**Segmentation**”, 依次选择 “**Export as surface mesh”**，”**Export meshes for all labels as a single scene**”，然后为文件命名（例，**statmapThresh.vtk**），该VTK文件即保存在与原文件相同的位置。
-    4. 对**glassbrain.nii**执行以上相同的操作，并保存（**glassbrain.vtk**）
-3. 在ParaView中进行3D可视化（也可以选择使用sample data中的文件👇）
-    
-    ![CleanShot 2023-10-06 at 22.01.08@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_22.01.082x.png)
-    
-    1. 将两个VTK文件都导入ParaView中，并放在一个builtin下，并把左边的两个眼睛图标点开，此时获得了3D脑图
-        
-        ![CleanShot 2023-10-06 at 21.26.29@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.26.292x.png)
-        
-    2. 调整ParaView的设置，使其符合个人的需求
-        1. 在**builtin**下选中**glassbrain.vtk**
-            
-            ![CleanShot 2023-10-06 at 21.33.12@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.33.122x.png)
-            
-            1. 通过左侧**opacity**将**glassbrain**设置为半透明
-            2. 更改右侧**color map**选择心仪的颜色
-            3. 隐藏**color legend**（更改后⬇️
-            
-            ![CleanShot 2023-10-06 at 21.36.17@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.36.172x.png)
-            
-        2. 在builtin下选择statmapThresh.vtk
-            
-            ![CleanShot 2023-10-06 at 21.49.35@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.49.352x.png)
-            
-            1. 左侧选择“**Use separate color map**”，可以选择与glassbrain不同的颜色
-            2. 右侧更改**color map**
-        3. 颜色、背景自定义
-            
-            ![CleanShot 2023-10-06 at 21.56.49@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_21.56.492x.png)
-            
-            1. 左侧取消勾选“**Use color palette for background**”，点击下方的“**Background”**选择其他颜色
-            2. 右侧选择 “**Use below range color**”，在 “Below Range Color”中选择脑区的颜色
-            3. 鼠标点击中间的大脑，滑动调整视图的角度
-        4. 保存文件
-            1. 保存为**pvsm**文件：菜单栏选择“**File**” - “**Save state**”，输入文件名并选择保存地
-            2. 保存为截图：菜单栏选择“**File**” - “**Save screenshot**”
+1. Apply a height threshold to your **statmap.nii** file and perform clustering to produce an output file, e.g., **statmapThresh.nii**.
+2. Apply the same height threshold to **anatomical.nii** without clustering, resulting in **glassbrain.nii**.
+&nbsp;
+---
 
-### 用adobe illustrator作图
+### Step 2: Convert NIfTI to VTK Format with ITK-SNAP
 
-优点：
+1. Download and launch [**ITK-SNAP**](http://www.itksnap.org/pmwiki/pmwiki.php).
+2. Main Image: Drag and drop **statmapThresh.nii** into the ITK-SNAP interface (it will automatically be set as the **main image** on the first import).
+   ![main image](3d_pics/002.png)
+3. Segmentation Image: Drag and drop the **statmapThresh.nii** file into ITK-SNAP once more. This time, when prompted, choose the option to **Load as Segmentation**.
+   ![segmentation image](3d_pics/003.png)
+4. Save the file: Go to the **Segmentation** menu, choose **Export as surface mesh**, then **Export meshes for all labels as a single scene**. This step converts segmented images into a **VTK** format, **statmapThresh.vtk**
+5. Repeating for Glassbrain: Follow similar steps for the **glassbrain.nii** file to convert to **glassbrain.vtk**.
+&nbsp; 
+---
+### Step 3: 3D Visualization in ParaView
+Visualize and interact with 3D brain structures using ParaView.
 
-1. 可转为矢量图
-2. 可去除背景
+1. Download and launch [ParaView](https://www.paraview.org/download/)
+2. Import VTK Files: Load both **statmapThresh.vtk** and **glassbrain.vtk** into ParaView.
+   ![paraview image](3d_pics/005.png)
+3. Tailor the visualization to your preferences by altering opacity, color maps, and other display settings.
+    1. Select **glassbrain.vtk** under the builtin section to begin customization.
+        1. Adjust the **opacity** slider on the left panel to set the glassbrain to semi-transparent, enhancing depth perception in the visualization.
+        2. Change the **color map** on the right panel to select a preferred color scheme that enhances the visualization's clarity and contrast.
+        3. Opt to hide the **color legend** for a cleaner view, focusing solely on the brain structure.
+            ![paraview](3d_pics/006.png)
+            ![glassbrain result](3d_pics/007.png)
 
-详细参考：
+    2. Choose **statmapThresh.vtk** under the builtin category to apply different visualization settings from the glassbrain.         
+        1. Select **Use separate color map** on the left to differentiate statmap's coloration from the glassbrain, enhancing the distinction between different brain regions or activity levels.
+        2. Modify the **color map** on the right to apply a unique color palette that highlights the statmap data effectively.
+            ![statmap](3d_pics/008.png)
+           
 
-[How to convert the inserted picture into vector illustration?](https://www.notion.so/How-to-convert-the-inserted-picture-into-vector-illustration-974600d35a0b4902832232a06e5bd7b8?pvs=21)
+    3. Personalize Colors and Background. 
+        1. Uncheck **Use color palette for background** on the left and select **Background** to choose a custom color that complements or contrasts with your data for better visual distinction.
+        2. On the right, select **Use below range color** and pick a specific color for brain regions from the **Below Range Color** option, aiding in data interpretation.
+            ![result](3d_pics/009.png)
+&nbsp;
+___
+
+## Customization and Extensions
+
+The given workflow is fully customizable, allowing users to adjust colors, angles, and transparency levels to best suit the data's story. The provided Adobe Illustrator steps further enhance the final visuals for a sleek, professional look which I will upload later.
+&nbsp;
+
+
