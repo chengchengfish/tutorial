@@ -11,7 +11,7 @@
     
 3. [Sample data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4648228/)
     
-    ![CleanShot 2023-10-06 at 19.01.15@2x.png](3D%20visualization%20of%20fMRI%20img%2073a3697a4ad74a0e807bdf22c1a6cfc5/CleanShot_2023-10-06_at_19.01.152x.png)
+    ![Paper](chengchengfish/tutorial/3d_pics)
     
 
 ### 操作流程
